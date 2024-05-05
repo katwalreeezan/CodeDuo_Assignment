@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useIndividualSpellQuery } from "../../service/apiRequest";
+import { useIndividualSpellQuery } from "../../service/api/apiRequest";
 import Loader from "../../components/Loader";
 
 const IndividualSpell = () => {
@@ -12,7 +12,7 @@ const IndividualSpell = () => {
   return (
     <div className="container mt-5">
       {isLoading ? (
-        <Loader/>
+        <Loader />
       ) : (
         <>
           <h5 className="fw-bold text-center">
@@ -28,12 +28,14 @@ const IndividualSpell = () => {
                 </div>
                 <div>
                   <b>Material : </b>
-                  {individualSpell?.material}
+                  {individualSpell?.material || "No Material Found"}
                 </div>
                 <div>
                   <b>Classes : </b>
                   {individualSpell?.classes?.map((item) => (
-                    <div className=" " key={item.index}><div className="">{item.name}</div> </div>
+                    <div className=" " key={item.index}>
+                      <div className="">{item.name}</div>{" "}
+                    </div>
                   ))}
                 </div>
               </div>
