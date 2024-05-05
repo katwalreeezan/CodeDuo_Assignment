@@ -15,6 +15,13 @@ export const spellApi=createApi({
             }),
             providesTags:['Spell']
         }),
+        individualSpell:builder.query({
+            query:(name)=>({
+                url:Endpoint.INDIVIDUAL_SPELL_BY_NAME(name),
+                method:"GET"
+            }),
+            providesTags:['Spell']
+        }),
         
         addSpells:builder.mutation({
             query:(data)=>({
@@ -26,4 +33,4 @@ export const spellApi=createApi({
         })
     })
 })
-export const {useGetSpellsQuery, useAddSpellsMutation}=spellApi
+export const {useGetSpellsQuery, useAddSpellsMutation,useIndividualSpellQuery}=spellApi
