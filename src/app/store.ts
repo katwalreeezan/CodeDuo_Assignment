@@ -1,10 +1,10 @@
 // store.ts
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { spellApi } from '../service/api/apiRequest';
-import favoriteSpellsReducer from '../service/features/favoriteSpellSlice';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { spellApi } from "../service/api/apiRequest";
+import favoriteSpellsReducer from "../service/features/favoriteSpellSlice";
 
 const rootReducer = combineReducers({
   [spellApi.reducerPath]: spellApi.reducer,
@@ -12,9 +12,9 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whitelist: ['favoriteSpells'],
+  whitelist: ["favoriteSpells"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -22,12 +22,17 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false}).concat(spellApi.middleware),
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      spellApi.middleware
+    ),
 });
 
 store.subscribe(() => {
   const state = store.getState();
-  localStorage.setItem('favoriteSpells', JSON.stringify(state.favoriteSpells.favoriteSpells));
+  localStorage.setItem(
+    "favoriteSpells",
+    JSON.stringify(state.favoriteSpells.favoriteSpells)
+  );
 });
 
 setupListeners(store.dispatch);

@@ -12,23 +12,23 @@ import {
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 
+
 const SpellLists = () => {
   const dispatch = useDispatch();
   const { data: allSpells, isSuccess, isLoading } = useGetSpellsQuery();
   const favoriteSpells = useSelector(
     (state: RootState) => state.favoriteSpells.favoriteSpells
   );
-  console.log(favoriteSpells);
 
   const handleFavoriteClick = (spell) => {
     const isFavorite = favoriteSpells.some(
       (favoriteSpell) => favoriteSpell.index === spell.index
     );
-    toast.success(isFavorite ? 'Removed from favorites' : 'Added to favorites');
+    toast.success(isFavorite ? "Removed from favorites" : "Added to favorites");
     if (isFavorite) {
-      dispatch(removeFromFavorites(spell)); 
+      dispatch(removeFromFavorites(spell));
     } else {
-      dispatch(addToFavorites(spell)); 
+      dispatch(addToFavorites(spell));
     }
   };
 
@@ -38,9 +38,23 @@ const SpellLists = () => {
         <Loader />
       ) : (
         <>
-          <h5 className="fw-bold">List of All Spells</h5>
-          <div className="row gy-4">
-            {favoriteSpells.map((item)=><div key={item.index}>{item.name}</div>)}
+          <div className="d-flex justify-content-between pb-5">
+            <h5 className="fw-bold">List of All Spells</h5>
+            <Link to="/spell/favorite-list">
+              <button className="btn btn-info ">
+                View Favorite Spells <FaHeart />
+                {favoriteSpells.length === 0 ? (
+                  ""
+                ) : (
+                  <> ({favoriteSpells.length})</>
+                )}
+              </button>
+            </Link>
+          </div>
+          <div
+            className="row gy-4"
+            style={{ height: "75vh", overflowY: "scroll" }}
+          >
             {isSuccess &&
               allSpells?.results?.map((item) => (
                 <div className="col-lg-4" key={item.index}>

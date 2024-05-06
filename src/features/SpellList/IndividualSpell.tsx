@@ -3,9 +3,8 @@ import { useIndividualSpellQuery } from "../../service/api/apiRequest";
 import Loader from "../../components/Loader";
 
 const IndividualSpell = () => {
-  const { name } = useParams();
-
-  console.log(name);
+  const { name: paramName } = useParams<{ name: string }>();
+  const name = paramName ?? "";
   const { data: individualSpell, isLoading } = useIndividualSpellQuery(name);
   console.log(individualSpell);
 

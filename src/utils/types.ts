@@ -1,10 +1,15 @@
-export interface Spell {
-    index: string;
-    name: string;
-    // Add more properties as needed
-  }
-  
-  export interface FavoriteSpellsState {
-    favoriteSpells: Spell[];
-  }
-  
+export interface Spell{
+  index:string,
+  name:string,
+  level:number,
+  url:string
+}
+
+// export interface Spells {
+//   index: string;
+//   name: string;
+// }
+
+export interface FavoriteSpellsState {
+  favoriteSpells: Spell[];
+}

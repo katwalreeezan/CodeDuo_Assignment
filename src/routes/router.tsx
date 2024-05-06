@@ -7,6 +7,7 @@ const IndividualSpell = lazy(
   () => import("../features/SpellList/IndividualSpell")
 );
 const PageNotFound = lazy(() => import("../components/PageNotFound"));
+const FavoriteList=lazy(()=>import("../features/FavoriteLists/FavoriteList"))
 
 const Loader = () => {
   return <div>Loading</div>;
@@ -20,6 +21,7 @@ const AppRoute = () => {
           <Route path="/" element={<Navigate replace to="/spell" />} />
           <Route path="/spell" element={<SpellList />} />
           <Route path="/spell/:name" element={<IndividualSpell />} />
+          <Route path="/spell/favorite-list" element={<FavoriteList/>} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </Suspense>

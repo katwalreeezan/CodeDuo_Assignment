@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Endpoint from "./Endpoint";
-const API_URL = import.meta.env.VITE_API_URL;
+import { Spell } from "../../utils/types";
+const API_URL:string = import.meta.env.VITE_API_URL;
 export const spellApi = createApi({
   reducerPath: "spell",
   baseQuery: fetchBaseQuery({
@@ -8,33 +9,24 @@ export const spellApi = createApi({
   }),
   tagTypes: ["Spell"],
   endpoints: (builder) => ({
-    getSpells: builder.query({
+    getSpells: builder.query<Spell[],void>({
       query: () => ({
         url: Endpoint.GET_SPELL,
         method: "GET",
       }),
       providesTags: ["Spell"],
     }),
-    individualSpell: builder.query({
-      query: (name) => ({
+    individualSpell: builder.query<Spell ,string>({
+      query: (name:string) => ({
         url: Endpoint.INDIVIDUAL_SPELL_BY_NAME(name),
         method: "GET",
       }),
       providesTags: ["Spell"],
     }),
 
-    addSpells: builder.mutation({
-      query: (data) => ({
-        url: Endpoint.ADD_STUDENT,
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Spell"],
-    }),
   }),
 });
 export const {
   useGetSpellsQuery,
-  useAddSpellsMutation,
   useIndividualSpellQuery,
 } = spellApi;
