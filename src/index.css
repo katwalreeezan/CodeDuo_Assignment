@@ -1,9 +1,17 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.loaderheight{
+.loaderheight {
   height: 70vh;
+}
+.cardheight {
+  height: 75vh;
+  overflow-y: scroll;
+}
+.individualheight {
+  height: 70vh;
+  overflow-y: scroll;
 }

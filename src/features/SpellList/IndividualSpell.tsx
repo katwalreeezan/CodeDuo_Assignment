@@ -34,10 +34,7 @@ const IndividualSpell = React.memo(() => {
                       Information of {individualSpell?.name}{" "}
                     </h5>
                   </div>
-                  <div
-                    className="card-body"
-                    style={{ height: "70vh", overflowY: "scroll" }}
-                  >
+                  <div className="card-body individualheight">
                     <div>
                       <b>Name : </b>
                       {individualSpell?.name}

@@ -65,10 +65,7 @@ const SpellLists = React.memo(() => {
               </button>
             </Link>
           </div>
-          <div
-            className="row gy-4"
-            style={{ height: "75vh", overflowY: "scroll" }}
-          >
+          <div className="row gy-4 cardheight">
             {isSuccess &&
               allSpells &&
               allSpells?.results?.map((item) => (

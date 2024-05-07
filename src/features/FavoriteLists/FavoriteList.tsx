@@ -1,8 +1,8 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { Link } from "react-router-dom";
 import { Spell } from "../../utils/types";
-import React from "react";
 
 const FavoriteList = React.memo(() => {
   const favoriteSpells = useSelector(
@@ -13,7 +13,11 @@ const FavoriteList = React.memo(() => {
     <div className="container mt-5">
       <h5 className="fw-bold text-center">Favorite Spell List</h5>
       {favoriteSpells.length === 0 && (
-        <p className="text-center">There are no any favorite spells</p>
+        <div className="card">
+          <div className="card-body">
+            <p className="text-center">There are no any favorite spells</p>
+          </div>
+        </div>
       )}
       <div className="row gy-4 mt-3">
         {favoriteSpells.map((item: Spell) => (
