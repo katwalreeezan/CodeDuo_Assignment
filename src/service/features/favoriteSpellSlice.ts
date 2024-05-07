@@ -1,8 +1,8 @@
 // favoriteSpellsSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FavoriteSpellsState, Spell } from "../../utils/types";
+import {  FavoriteSpellsState, Spell } from "../../utils/types";
 
-const initialState: FavoriteSpellsState = {
+const initialState:FavoriteSpellsState={
   favoriteSpells: JSON.parse(localStorage.getItem("favoriteSpells") ?? "[]"),
 };
 

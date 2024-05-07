@@ -1,13 +1,23 @@
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useIndividualSpellQuery } from "../../service/api/apiRequest";
 import Loader from "../../components/Loader";
 
-const IndividualSpell = () => {
+const IndividualSpell = React.memo(() => {
   const { name: paramName } = useParams<{ name: string }>();
   const name = paramName ?? "";
-  const { data: individualSpell, isLoading } = useIndividualSpellQuery(name);
-  console.log(individualSpell);
-
+  const {
+    data: individualSpell,
+    isLoading,
+    isError,
+  } = useIndividualSpellQuery(name);
+  if (isError) {
+    return (
+      <div className="text-danger text-center my-4">
+        Error While Fetching the Data
+      </div>
+    );
+  }
   return (
     <div className="container mt-5 ">
       {isLoading ? (
@@ -16,12 +26,14 @@ const IndividualSpell = () => {
         <>
           {individualSpell && (
             <div>
-              <h5 className="fw-bold text-center">
-                Information of {individualSpell?.name}{" "}
-              </h5>
-
               <div className="col-lg-7 mx-auto">
                 <div className="card">
+                  <div className="card-header">
+                    {" "}
+                    <h5 className="fw-bold text-center">
+                      Information of {individualSpell?.name}{" "}
+                    </h5>
+                  </div>
                   <div
                     className="card-body"
                     style={{ height: "70vh", overflowY: "scroll" }}
@@ -75,11 +87,9 @@ const IndividualSpell = () => {
                     <div className="mt-2">
                       <b>Description : </b>
 
-                      {individualSpell?.desc?.map(
-                        (paragraph, index) => (
-                          <div key={index}>{paragraph}</div>
-                        )
-                      )}
+                      {individualSpell?.desc?.map((paragraph, index) => (
+                        <div key={index}>{paragraph}</div>
+                      ))}
                     </div>
                     <div className="mt-2">
                       <b>Higher Level Casting : </b>
@@ -110,7 +120,7 @@ const IndividualSpell = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 text-end">
+                <div className="mt-4 text-end" aria-label="Back button">
                   <Link to="/">
                     <button className="btn btn-info">Back</button>
                   </Link>
@@ -122,6 +132,6 @@ const IndividualSpell = () => {
       )}
     </div>
   );
-};
+});
 
 export default IndividualSpell;

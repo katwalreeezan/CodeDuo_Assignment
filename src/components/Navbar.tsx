@@ -5,20 +5,21 @@ import {
   MDBNavbarBrand,
   MDBIcon,
   MDBNavbarNav,
-
   MDBNavbarToggler,
   MDBCollapse,
 } from "mdb-react-ui-kit";
 
 const Navbar = () => {
-  const [openNav, setOpenNav] = useState(false);
+  const [openNav, setOpenNav] = useState<boolean>(false);
   return (
     <div>
-      <MDBNavbar expand="lg"  bgColor="primary">
-        <MDBContainer >
-          <MDBNavbarBrand className="text-white" href='/'>SPELL LISTING</MDBNavbarBrand>
+      <MDBNavbar expand="lg" bgColor="primary">
+        <MDBContainer>
+          <MDBNavbarBrand className="text-white" href="/">
+            SPELL LISTING APP
+          </MDBNavbarBrand>
           <MDBNavbarToggler
-          className="text-dark"
+            className="text-dark"
             type="button"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -27,11 +28,7 @@ const Navbar = () => {
             <MDBIcon icon="bars" fas />
           </MDBNavbarToggler>
           <MDBCollapse className="ms-auto" navbar open={openNav}>
-            <MDBNavbarNav className="text-white" >
-            
-             
-           
-            </MDBNavbarNav>
+            <MDBNavbarNav className="text-white"></MDBNavbarNav>
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>

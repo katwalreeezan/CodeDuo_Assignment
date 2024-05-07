@@ -52,3 +52,6 @@ export interface IndividualSpell{
     url: string;
   
 }
+export interface FavoriteSpellsState {
+  favoriteSpells: Spell[];
+}

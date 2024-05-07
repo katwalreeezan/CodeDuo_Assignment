@@ -1,4 +1,4 @@
-// SpellLists.tsx
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
@@ -13,12 +13,26 @@ import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 import { Spell } from "../../utils/types";
 
-const SpellLists = () => {
+const SpellLists = React.memo(() => {
   const dispatch = useDispatch();
-  const { data: allSpells, isSuccess, isLoading } = useGetSpellsQuery();
+  const {
+    data: allSpells,
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+  } = useGetSpellsQuery();
+  console.log(error);
   const favoriteSpells = useSelector(
     (state: RootState) => state.favoriteSpells.favoriteSpells
   );
+  if (isError) {
+    return (
+      <div className="text-danger text-center my-4">
+        Error While Fetching the Data
+      </div>
+    );
+  }
 
   const handleFavoriteClick = (spell: Spell) => {
     const isFavorite = favoriteSpells.some(
@@ -33,13 +47,13 @@ const SpellLists = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 ">
       {isLoading ? (
         <Loader />
       ) : (
         <>
           <div className="d-flex justify-content-between pb-5">
-            <h5 className="fw-bold">List of All Spells</h5>
+            <h5 className="fw-bold ">List of All Spells</h5>
             <Link to="/spell/favorite-list">
               <button className="btn btn-info ">
                 View Favorite Spells <FaHeart />
@@ -56,14 +70,17 @@ const SpellLists = () => {
             style={{ height: "75vh", overflowY: "scroll" }}
           >
             {isSuccess &&
-              allSpells?.results?.map((item: Spell) => (
+              allSpells &&
+              allSpells?.results?.map((item) => (
                 <div className="col-lg-4" key={item.index}>
-                  <div className="card shadow-lg">
-                    <div className="card-body">
+                  <div className="card border ">
+                    <div className="card-header ">
                       <div className="text-dark fw-bold text-uppercase">
                         {item.name}
                       </div>
-                      <div className="d-flex justify-content-between mt-3">
+                    </div>
+                    <div className="card-body">
+                      <div className="d-flex justify-content-between mt-2">
                         <Link to={`/spell/${item.index}`}>
                           <button className="btn btn-primary">View</button>
                         </Link>
@@ -95,6 +112,6 @@ const SpellLists = () => {
       )}
     </div>
   );
-};
+});
 
 export default SpellLists;

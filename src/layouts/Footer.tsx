@@ -1,5 +1,7 @@
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <div className="text-center">&#169;Copyright | All rights reserved</div>
+  );
 };
 
 export default Footer;
