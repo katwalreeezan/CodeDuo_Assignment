@@ -11,7 +11,7 @@ import {
 } from "../../service/features/favoriteSpellSlice";
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
-
+import { Spell } from "../../utils/types";
 
 const SpellLists = () => {
   const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const SpellLists = () => {
     (state: RootState) => state.favoriteSpells.favoriteSpells
   );
 
-  const handleFavoriteClick = (spell) => {
+  const handleFavoriteClick = (spell: Spell) => {
     const isFavorite = favoriteSpells.some(
-      (favoriteSpell) => favoriteSpell.index === spell.index
+      (favoriteSpell: Spell) => favoriteSpell.index === spell.index
     );
     toast.success(isFavorite ? "Removed from favorites" : "Added to favorites");
     if (isFavorite) {
@@ -56,7 +56,7 @@ const SpellLists = () => {
             style={{ height: "75vh", overflowY: "scroll" }}
           >
             {isSuccess &&
-              allSpells?.results?.map((item) => (
+              allSpells?.results?.map((item: Spell) => (
                 <div className="col-lg-4" key={item.index}>
                   <div className="card shadow-lg">
                     <div className="card-body">
@@ -73,7 +73,7 @@ const SpellLists = () => {
                           onClick={() => handleFavoriteClick(item)}
                         >
                           {favoriteSpells.some(
-                            (favoriteSpell) =>
+                            (favoriteSpell: Spell) =>
                               favoriteSpell.index === item.index
                           ) ? (
                             <>
