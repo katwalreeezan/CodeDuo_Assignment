@@ -8,7 +8,7 @@
 
 3. **Install Dependencies**
    - Run the following command in your terminal to install project dependencies:
-    "npm install" 
+   `npm install` 
 
 4. **Set Up Environment Variables**
    - Create a `.env` file in the root directory of the project.
@@ -18,8 +18,8 @@
 
 5. **Run the Development Server**
    - Once you've set up the environment variables, you can start the development server by running:
-     "npm run dev"
-   This command will compile the code and start a development server. You should be able to access your application at the specified local URL (usually `http://localhost:3000`).
+     `npm run dev`
+   This command will compile the code and start a development server. You should be able to access your application at the specified local URL (usually `http://localhost:5173/`).
 
 6. **Accessing the Application**
    - Open your web browser and navigate to the local URL where your application is running (e.g., `http://localhost:5173/`).
