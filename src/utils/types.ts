@@ -23,9 +23,9 @@ export interface IndividualSpell{
     concentration: boolean;
     casting_time: string;
     level: number;
-    attack_type: string;
-    damage: {
-      damage_type: {
+    attack_type?: string;
+    damage?: {
+      damage_type?: {
         index: string;
         name: string;
         url: string;

@@ -21,7 +21,7 @@ const FavoriteList = React.memo(() => {
       )}
       <div className="row gy-4 mt-3">
         {favoriteSpells.map((item: Spell) => (
-          <div key={item.index} className="col-lg-3">
+          <div key={item.index} className="col-lg-3 col-md-6">
             <div className="card  border">
               <div className="card-body">
                 <div className="d-flex justify-content-between align-items-center">

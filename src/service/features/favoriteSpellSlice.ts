@@ -1,4 +1,4 @@
-// favoriteSpellsSlice.ts
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {  FavoriteSpellsState, Spell } from "../../utils/types";
 

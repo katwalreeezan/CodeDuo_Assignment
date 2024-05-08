@@ -1,4 +1,3 @@
-
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -25,14 +24,6 @@ export const store = configureStore({
     getDefaultMiddleware({ serializableCheck: false }).concat(
       spellApi.middleware
     ),
-});
-
-store.subscribe(() => {
-  const state = store.getState();
-  localStorage.setItem(
-    "favoriteSpells",
-    JSON.stringify(state.favoriteSpells.favoriteSpells)
-  );
 });
 
 setupListeners(store.dispatch);

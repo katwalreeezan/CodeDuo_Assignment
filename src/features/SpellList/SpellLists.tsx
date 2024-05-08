@@ -67,7 +67,7 @@ const SpellLists = React.memo(() => {
             {isSuccess &&
               allSpells &&
               allSpells?.results?.map((item) => (
-                <div className="col-lg-4" key={item.index}>
+                <div className="col-lg-4 col-md-6" key={item.index}>
                   <div className="card border ">
                     <div className="card-header ">
                       <div className="text-dark fw-bold text-uppercase">
