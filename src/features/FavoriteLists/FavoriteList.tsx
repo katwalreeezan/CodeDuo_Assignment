@@ -24,10 +24,13 @@ const FavoriteList = React.memo(() => {
           <div key={item.index} className="col-lg-3">
             <div className="card  border">
               <div className="card-body">
-                <Link className="fw-bold" to={`/spell/${item.index}`}>
-                  {" "}
-                  <div className="text-uppercase">{item.name}</div>
-                </Link>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="text-uppercase fw-bold">{item.name}</div>
+
+                  <Link className="fw-bold" to={`/spell/${item.index}`}>
+                    <button className="btn btn-primary ">View</button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

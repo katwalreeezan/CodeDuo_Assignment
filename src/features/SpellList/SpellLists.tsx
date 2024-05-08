@@ -19,10 +19,8 @@ const SpellLists = React.memo(() => {
     data: allSpells,
     isSuccess,
     isLoading,
-    isError,
-    error,
+    isError
   } = useGetSpellsQuery();
-  console.log(error);
   const favoriteSpells = useSelector(
     (state: RootState) => state.favoriteSpells.favoriteSpells
   );
