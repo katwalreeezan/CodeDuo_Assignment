@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 
-import { RootState } from "../../app/store";
+import { AppDispatch, RootState } from "../../app/store";
 import { useGetSpellsQuery } from "../../service/api/apiRequest";
 import {
   addToFavorites,
@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { Spell } from "../../utils/types";
 
 const SpellLists = React.memo(() => {
-  const dispatch = useDispatch();
+  const dispatch:AppDispatch = useDispatch();
   const {
     data: allSpells,
     isSuccess,
